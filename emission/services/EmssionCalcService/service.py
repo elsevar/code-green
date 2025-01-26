@@ -1,4 +1,4 @@
-from utils import fetch_scopes, fetch_sources, find_energy_source_by_id
+from .utils import fetch_scopes, fetch_sources, find_energy_source_by_id
 from .dataclasses import EnergyConsumption, EmissionNode, EnergyScope, EnergySource
 from typing import Optional
 from collections import defaultdict

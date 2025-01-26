@@ -1,8 +1,8 @@
 from django.urls import path
-from .views import HelloView
+from .views import EnergyConsumptionAPIView
 
 app_name="emission"
 urlpatterns = [
-    path('', HelloView.as_view(), name="hello"),
+    path('calc/', EnergyConsumptionAPIView.as_view(), name="emission_calc"),
 ]
 

@@ -1,4 +1,5 @@
 import json
+import os
 from typing import Optional
 from emission.services.EmssionCalcService.dataclasses import EnergyScope, EnergySource
 
@@ -13,7 +14,9 @@ def _create_energy_scope_from_dict(data: dict) -> EnergyScope:
 
 
 def fetch_scopes():
-    with open("data/scopes.json", "r", encoding="utf-8") as f:
+    data_folder = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data')
+    json_file = os.path.join(data_folder, 'scopes.json')
+    with open(json_file, "r", encoding="utf-8") as f:
         scopes_data = json.load(f)
 
     return [_create_energy_scope_from_dict(scope_data) for scope_data in scopes_data]
@@ -30,7 +33,10 @@ def _create_energy_source_from_dict(data: dict) -> EnergySource:
 
 
 def fetch_sources():
-    with open("data/energy-source.json", "r", encoding="utf-8") as f:
+
+    data_folder = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data')
+    json_file = os.path.join(data_folder, 'energy-source.json')
+    with open(json_file, "r", encoding="utf-8") as f:
         sources_data = json.load(f)
 
     return [_create_energy_source_from_dict(source_data) for source_data in sources_data]
