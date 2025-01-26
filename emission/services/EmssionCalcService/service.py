@@ -38,10 +38,12 @@ class EmissionCalcService:
         scopped_leaves = defaultdict(list)
         for energy_consumption in self._energy_consumptions:
             energy_source = find_energy_source_by_id(energy_consumption.energy_source_id, self._sources)
-            scope_id = energy_source.scope_id
-            scope_leaf_count = len(scopped_leaves[scope_id])
-            leaf = self._build_leaf_node(scope_leaf_count, energy_consumption, energy_source)
-            scopped_leaves[scope_id].append(leaf)
+            #TODO: Implement better error handling for invalid or incorrect energy_source_id values.
+            if energy_source:
+                scope_id = energy_source.scope_id
+                scope_leaf_count = len(scopped_leaves[scope_id])
+                leaf = self._build_leaf_node(scope_leaf_count, energy_consumption, energy_source)
+                scopped_leaves[scope_id].append(leaf)
         return scopped_leaves
 
     def _build_leaf_node(
